@@ -1,4 +1,4 @@
-#Django Zuri Task.
+# Django Zuri Task.
 
 This is Task 7 giving to people in the Django track. Expand the CRUD capablity of the blog.
 
