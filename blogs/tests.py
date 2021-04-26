@@ -44,3 +44,49 @@ class BlogTests(TestCase):
         no_response = self.client.get('/post/100/')
         self.assertEqual(no_response.status_code,404)
         self.assertEqual(response.status_code,200)
+
+    def test_post_update(self):
+        response = self.client.get('/post/1/edit/')
+        self.assertNotEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 403)
+
+
+    def test_Post_post_Update(self):
+        response = self.client.post(reverse('edit_post', args='1'),
+        {
+            'title':'Update',
+            'body': 'New body'
+        })
+        # self.assertContains(response, 'Update')
+        self.assertNotEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 403)
+
+
+# permissions issue
+    def test_post_delete(self):
+        response = self.client.get('/post/1/delete/')
+        self.assertNotEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 403)
+
+    # permissions issue 
+    # def test_POST_delete(self):
+    #     post_response = self.client.post(reverse('delete_post',args='1'))
+    #     self.assertEqual(post_response.status_code, 302)
+
+
+class SignUptest(TestCase):
+
+    username = 'newuser'
+    email = 'newuser@email.com'
+
+    def test_signup_page(self):
+        response = self.client.get('/signup/')
+        self.assertEqual(response.status_code,200)
+        self.assertTemplateUsed(response, 'registration/signup.html')
+
+    def test_signup(self):
+        newuser = get_user_model().objects.create_user(
+        self.username, self.email)
+        self.assertEqual(get_user_model().objects.all().count(),1)
+        self.assertEqual(get_user_model().objects.all()[0].username, self.username)
+        self.assertEqual(get_user_model().objects.all()[0].email, self.email)

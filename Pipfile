@@ -9,6 +9,8 @@ django-crispy-forms = "*"
 gunicorn = "*"
 django-environ = "*"
 
+python-decouple = "*"
+
 [dev-packages]
 
 [requires]
