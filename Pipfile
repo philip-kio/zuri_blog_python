@@ -10,6 +10,7 @@ gunicorn = "*"
 django-environ = "*"
 python-decouple = "*"
 python-dotenv = "*"
+whitenoise = "*"
 
 [dev-packages]
 
