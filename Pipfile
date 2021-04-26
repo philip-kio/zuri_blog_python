@@ -8,8 +8,8 @@ django = "*"
 django-crispy-forms = "*"
 gunicorn = "*"
 django-environ = "*"
-
 python-decouple = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
